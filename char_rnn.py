@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import argparse
 
 import keras.callbacks
 import numpy as np
@@ -17,7 +18,12 @@ filter_length = [5, 3, 3]
 nb_filter = [196, 196, 256]
 pool_length = 2
 char_embedding = 40
-VALIDATION_SPLIT = 0.2
+validation_split = 0.2
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-has_dense', '--has_dense', metavar='bool', type=bool, default=True,
+                    help='CNN Sentence encoder with Fully Connected layers')
+args = parser.parse_args()
 
 
 # record history of training
@@ -164,7 +170,7 @@ ids = np.arange(len(X))
 np.random.shuffle(ids)
 X = X[ids]
 y = y[ids]
-nb_validation_samples = int(VALIDATION_SPLIT * X.shape[0])
+nb_validation_samples = int(validation_split * X.shape[0])
 
 # Test/Train split 20K Train, 5K Test
 X_train = X[:-nb_validation_samples]
@@ -180,9 +186,13 @@ input_sentence = Input(shape=(maxlen,), dtype='int64')
 # char indices to one hot matrix, 1D sequence to 2D 
 embedded_layer = Lambda(binarize, output_shape=binarize_outshape)(input_sentence)
 
-print('running model without fully connected layers')
-model = Model(inputs=document, outputs=sentence_encoder_wo_dense(embedded_layer))
-# model = Model(inputs=document, outputs=sentence_encoder_with_dense(embedded_layer))
+if args.has_dense:
+    print('running model with fully connected layers')
+    model = Model(inputs=document, outputs=sentence_encoder_with_dense(embedded_layer))
+else:
+    print('running model without fully connected layers')
+    model = Model(inputs=document, outputs=sentence_encoder_wo_dense(embedded_layer))
+
 model.summary()
 
 if checkpoint:
