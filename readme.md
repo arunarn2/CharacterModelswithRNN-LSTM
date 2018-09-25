@@ -12,12 +12,12 @@ The TimeDistributed layer is what allows the model to run a copy of the encoder 
 
 The model is trained with a CNN/Bi-LSTM encoder on 20000 reviews and validating on 2500 reviews. The optimzer used is ADAM with the default parameters. The model roughly achieves ~87% accuarcy on the validation set after the first 10 epochs
 
-## DataSet:
+### DataSet:
 
 I have used the [IMDB Movies dataset from Kaggle](https://www.kaggle.com/c/word2vec-nlp-tutorial/data), labeledTrainData.tsv which contains 25000 reviews with labels
 
 
-### Preprocessing on the Data:
+#### Preprocessing on the Data:
 I have done minimal preprocessing on the input reviews in the dataset following these basic steps:
 1. Remove html tags
 2. Replace non-ascii characters with a single space
@@ -25,17 +25,16 @@ I have done minimal preprocessing on the input reviews in the dataset following 
 
 Then I create the character set with a max sentence length of 512 chars and set an upper bound of 15 for the max number of sentences per review.  The input X is indexed as (document, sentence, char) and the target y has the corresponding sentiments.
 
-## Requirements:
+### Requirements:
 - pandas 0.20.3
 - tensorflow 1.4.0
 - keras 2.0.8
 - numpy 1.14.0
 
-## Execution:
+### Execution:
 python char_runn.py -has_dense=True/False (default: True)
 
-## Sample Output and Accuracy:
+### Sample Output and Accuracy:
 ![CNN Sentence Encoder output with fully connected layers](output.png)  
 
 
-# Hierarchical Models with Attention
