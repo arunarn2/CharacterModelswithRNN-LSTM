@@ -1,4 +1,4 @@
-# Character level Sentiment models
+# Character Level Sentiment Models
 These models are based on Karpathy's blog on the [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) and Christopher Olah's blog on [Understanding LSTMs](https://colah.github.io/posts/2015-08-Understanding-LSTMs/).
 
 The goal here is to encode text from character level, hence the we start by splitting the text (reviews in this case) into sentences. After encoding each sentence from characters to a fixed length encodingI use a bi-directional LSTM to read sentence by sentence and create a complete document encoding. The model starts reading characters and forming concepts of “words”, then uses a bi-directional LSTM to read “words” as a sequence and account for their position. After that each sentence encoding is being passed through a **second bi-directional LSTM that does the final document encoding**. The maximum length of the sentence is bound at 512 chars while the maximum number of sentences in a document is bound at 15. 
