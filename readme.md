@@ -1,6 +1,6 @@
 # Character level Sentiment models
 
-Requirements:
+## Requirements:
 
 - pandas 0.20.3
 
@@ -10,14 +10,14 @@ Requirements:
 
 - numpy 1.14.0
 
-These models are based on Karpathy's blog on the The Unreasonable Effectiveness of Recurrent Neural Networks and Christopher Olah's log https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+These models are based on Karpathy's blog on the The Unreasonable Effectiveness of Recurrent Neural Networks and Christopher Olah's blog on Understanding LSTMS <https://colah.github.io/posts/2015-08-Understanding-LSTMs/>
 
-DataSet:
+## DataSet:
 
 I have used the IMDB Movies dataset from Kaggle https://www.kaggle.com/c/word2vec-nlp-tutorial/data, labeledTrainData.tsv which contains 25000 reviews with labels
 
 
-Preprocessing on the Data:
+### Preprocessing on the Data:
 I have done minimal preprocessing on the input reviews in the dataset following these basic steps:
 1. Remove html tags
 2. Replace non-ascii characters with a single space
