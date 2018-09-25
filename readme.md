@@ -34,3 +34,4 @@ Then I create the character set with a max sentence length of 512 chars and set 
 python char_runn.py -has_dense=True/False (default: True)
 
 ## Sample Output and Accuracy:
+![CNN Sentence Encoder output with fully connected layers](output.png)  
